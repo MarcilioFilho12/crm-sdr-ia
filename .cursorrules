@@ -1,0 +1,34 @@
+# Cursor Rules — Desafio Attus
+
+Estas regras se aplicam SEMPRE, em qualquer interação com este repositório.
+
+## Regra de Ouro
+Antes de criar, editar, mover ou deletar QUALQUER arquivo/pasta:
+1. Leia `README.md` na raiz por inteiro.
+2. Identifique a fase do trabalho (1 a 4) e leia o `docs/fase-XX-*.md` correspondente.
+3. Leia `docs/SKILLS.md` (boas práticas e checklist).
+4. Leia `docs/ARCHITECTURE.md` se a mudança envolver estrutura de pastas/módulos.
+5. Leia `docs/CONVENTIONS.md` antes de nomear arquivos, branches ou commits.
+
+A documentação tem precedência sobre instruções pontuais. Em conflito, pergunte.
+
+## Princípios não-negociáveis
+- TypeScript estrito, ZERO `any`.
+- Componentes standalone, `ChangeDetectionStrategy.OnPush` por padrão.
+- Sem `subscribe` aninhado. Sempre `takeUntilDestroyed` ou `async pipe`.
+- Estado imutável.
+- Funções pequenas, nomes que revelam intenção (PT-BR no domínio, EN em infra).
+- Conventional Commits.
+- SOLID, DRY, KISS, YAGNI.
+- Cobertura de testes ≥ 60% na Fase 4.
+
+## Antipadrões proibidos
+- `any`, `==`, `var`.
+- `subscribe` dentro de `subscribe`.
+- Lógica de negócio em template.
+- Mutar `@Input()` ou estado direto.
+- `console.log` em código entregue.
+- Componente com mais de uma responsabilidade.
+
+## Fluxo a cada tarefa
+README → fase.md → SKILLS.md → (ARCHITECTURE.md) → planejar → implementar em passos pequenos → lint + testes + build → atualizar doc se necessário.

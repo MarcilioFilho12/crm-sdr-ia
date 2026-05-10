@@ -1,0 +1,65 @@
+<h2 mat-dialog-title>{{ titulo }}</h2>
+
+<mat-dialog-content [formGroup]="form">
+  <div class="campos">
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Usuário (e-mail)</mat-label>
+      <input matInput type="email" formControlName="email" autocomplete="email" />
+      @if (form.controls.email.hasError('required')) {
+        <mat-error>E-mail obrigatório</mat-error>
+      } @else if (form.controls.email.hasError('email')) {
+        <mat-error>E-mail inválido</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full">
+      <mat-label>Nome completo</mat-label>
+      <input matInput formControlName="nome" autocomplete="name" />
+      @if (form.controls.nome.hasError('required')) {
+        <mat-error>Nome obrigatório</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="half">
+      <mat-label>CPF</mat-label>
+      <input matInput formControlName="cpf" inputmode="numeric" maxlength="14" />
+      @if (form.controls.cpf.hasError('required')) {
+        <mat-error>CPF obrigatório</mat-error>
+      } @else if (form.controls.cpf.hasError('cpf')) {
+        <mat-error>CPF inválido</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="telefone-linha">
+      <mat-form-field appearance="outline" class="fone">
+        <mat-label>Número do telefone</mat-label>
+        <input matInput formControlName="telefone" inputmode="tel" />
+        @if (form.controls.telefone.hasError('required')) {
+          <mat-error>Telefone obrigatório</mat-error>
+        } @else if (form.controls.telefone.hasError('telefone')) {
+          <mat-error>Telefone inválido</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="tipo">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipoTelefone">
+          @for (t of tiposTelefone; track t.valor) {
+            <mat-option [value]="t.valor">{{ t.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <p class="aviso-sms">
+    O usuário receberá uma senha provisória para acesso ao sistema por SMS.
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+  <button mat-flat-button color="primary" type="button" [disabled]="form.invalid" (click)="salvar()">
+    SALVAR
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,60 @@
+<mat-sidenav-container class="shell">
+  <mat-sidenav #drawer mode="over" class="drawer">
+    <div class="drawer-inner">
+      <p class="drawer-placeholder">Navegação</p>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="shell-main">
+    <mat-toolbar class="toolbar-dark">
+      <button
+        mat-icon-button
+        type="button"
+        (click)="drawer.toggle()"
+        aria-label="Abrir ou fechar menu"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">USUÁRIOS</span>
+      <span class="flex-spacer"></span>
+      <mat-form-field appearance="fill" class="busca" subscriptSizing="dynamic">
+        <mat-label class="sr-only">Pesquisar</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput placeholder="Pesquisar..." [formControl]="termo" />
+      </mat-form-field>
+    </mat-toolbar>
+
+    <main class="conteudo">
+      <h2 class="subtitulo">Usuários cadastrados</h2>
+
+      @if (estado().error) {
+        <p class="erro" role="alert">{{ estado().error }}</p>
+      }
+
+      @if (estado().loading) {
+        <div class="loading-wrap">
+          <mat-spinner diameter="40" aria-label="Carregando lista"></mat-spinner>
+        </div>
+      } @else {
+        <div class="lista" role="list">
+          @for (u of estado().users; track u.id) {
+            <app-user-card [usuario]="u" (editar)="editar($event)" />
+          } @empty {
+            <p class="vazio">Nenhum usuário encontrado.</p>
+          }
+        </div>
+      }
+    </main>
+
+    <button
+      mat-fab
+      color="warn"
+      class="fab-add"
+      type="button"
+      aria-label="Adicionar novo usuário"
+      (click)="abrirNovo()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
