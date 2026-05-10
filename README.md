@@ -1,511 +1,269 @@
-# Angular Front-End Technical Challenge
+# Desafio Técnico Front-End — Angular (Attus)
 
-## Project Overview
-
-This project is a technical assessment focused on Angular 17+, RxJS, Signals, NgRx, Angular Material, TypeScript and reactive architecture.
-
-The goal is not only to build screens, but to demonstrate:
-
-* Front-end architecture thinking
-* Reactive programming knowledge
-* State management organization
-* Angular best practices
-* Clean code principles
-* Performance optimization
-* Scalability mindset
-* Component modularization
-* Testability
-
-The project must prioritize:
-
-* maintainability
-* readability
-* strong typing
-* modular structure
-* reactive patterns
-* clean separation of responsibilities
+> **Mapa central do projeto.** Este README é a **fonte da verdade** para qualquer agente (humano ou IA, especialmente o **Cursor**) que for trabalhar neste repositório. Ele descreve o objetivo, a stack obrigatória, a arquitetura, as fases do desafio e as regras de execução. Cada fase tem um documento próprio em [`docs/`](./docs) que **deve ser lido antes** de qualquer alteração na pasta correspondente.
 
 ---
 
-# Mandatory Stack
+## 📌 Regra de Ouro para o Cursor (e qualquer agente de IA)
 
-* Angular 17+
-* TypeScript
-* RxJS
-* Angular Material
-* Signals or NgRx
-* Standalone Components
-* Jest or Vitest
+**Antes de criar, editar, mover ou deletar qualquer arquivo/pasta, o agente DEVE:**
 
----
+1. **Ler este `README.md` por inteiro** — para entender escopo, stack, arquitetura e convenções.
+2. **Ler o arquivo `docs/fase-XX-*.md`** correspondente à pasta/funcionalidade que será alterada.
+3. **Ler o `docs/SKILLS.md`** — contém as habilidades técnicas exigidas, padrões de código, boas práticas e checklists de qualidade.
+4. **Ler o `docs/ARCHITECTURE.md`** quando a alteração envolver estrutura de pastas, módulos, libs ou camadas.
+5. Só então propor/aplicar mudanças, **respeitando 100% da documentação**.
 
-# Development Philosophy
+> Se houver conflito entre uma instrução pontual e a documentação, **a documentação vence**. Em caso de dúvida, parar e perguntar — nunca improvisar.
 
-This project follows enterprise Angular architecture principles.
+### Fluxo obrigatório de trabalho
 
-Before generating code:
-
-* analyze the folder context
-* understand component responsibility
-* respect reactive architecture
-* avoid duplicated logic
-* avoid imperative patterns when RxJS can solve elegantly
-* prefer composition over complexity
-* maintain strong typing
-* keep code scalable and testable
-
----
-
-# Architecture Goals
-
-The architecture must:
-
-* separate UI from business logic
-* isolate state management
-* centralize API communication
-* reduce unnecessary change detection cycles
-* keep components small and reusable
-* avoid nested subscriptions
-* avoid memory leaks
-* use reactive flows consistently
+```text
+Pedido recebido
+   │
+   ▼
+[1] Ler README.md ──► [2] Identificar a fase ──► [3] Ler docs/fase-XX.md
+                                                       │
+                                                       ▼
+                                            [4] Ler docs/SKILLS.md
+                                                       │
+                                                       ▼
+                                       [5] Ler docs/ARCHITECTURE.md (se aplicável)
+                                                       │
+                                                       ▼
+                                            [6] Planejar a mudança
+                                                       │
+                                                       ▼
+                                  [7] Implementar respeitando convenções
+                                                       │
+                                                       ▼
+                                  [8] Rodar lint + testes + build local
+                                                       │
+                                                       ▼
+                                            [9] Atualizar a doc se necessário
+```
 
 ---
 
-# Main Technical Priorities
+## 🎯 Objetivo
 
-## 1. Strong TypeScript
+Avaliar conhecimentos práticos em **Angular 17+**, **RxJS**, **NgRx/Signals**, **Angular Material**, **testes unitários**, **TypeScript** e **integração com APIs REST**, por meio de quatro fases progressivas.
 
-Requirements:
+## 🧰 Stack Obrigatória
 
-* avoid any
-* use interfaces
-* use utility types when useful
-* maintain strong typing
-* keep functions predictable
-* prefer readonly when possible
+- **Angular 17+** (componentes standalone)
+- **TypeScript** (strict, sem `any`)
+- **RxJS**
+- **NgRx** *ou* **Signals** (gerenciamento de estado)
+- **Angular Material**
+- **Vitest** *ou* **Jest** (testes)
+- **ESLint + Prettier** (qualidade)
 
----
+## 🗂️ Estrutura de Documentação
 
-## 2. Reactive Angular Architecture
+```text
+.
+├── README.md                       ◄── Você está aqui (mapa central)
+└── docs/
+    ├── ARCHITECTURE.md             Arquitetura, camadas, organização de pastas
+    ├── SKILLS.md                   Habilidades, boas práticas e checklists
+    ├── CONVENTIONS.md              Convenções de código, commits e nomes
+    ├── fase-01-typescript.md       Fase 1 — TypeScript e Qualidade de Código
+    ├── fase-02-angular-rxjs.md     Fase 2 — Angular: Fundamentos e Reatividade
+    ├── fase-03-estado.md           Fase 3 — Gerenciamento de Estado
+    └── fase-04-app-pratica.md      Fase 4 — Aplicação Angular (Desafio Prático)
+```
 
-The application must:
-
-* use standalone components
-* use reactive forms
-* use RxJS operators correctly
-* use async pipe whenever possible
-* manage subscriptions safely
-* avoid imperative state mutations
-
----
-
-## 3. RxJS Best Practices
-
-Prefer:
-
-* switchMap
-* debounceTime
-* distinctUntilChanged
-* catchError
-* finalize
-* combineLatest
-* forkJoin
-
-Avoid:
-
-* subscribe inside subscribe
-* unnecessary manual subscriptions
-* duplicated streams
-
-Subscription management:
-
-* takeUntilDestroyed
-* async pipe
-* take(1)
-* automatic cleanup
+> **Cada pasta de código futura (ex.: `src/app/features/users`) também terá um `README.md` local** apontando para a fase correspondente em `docs/`.
 
 ---
 
-# Folder Structure
+## 🚦 Fases do Projeto
 
-src/app/
+| # | Fase | Documento | Pasta-alvo |
+|---|------|-----------|------------|
+| 1 | TypeScript e Qualidade de Código | [`docs/fase-01-typescript.md`](./docs/fase-01-typescript.md) | `src/app/core/`, `src/app/shared/` |
+| 2 | Angular — Fundamentos e Reatividade | [`docs/fase-02-angular-rxjs.md`](./docs/fase-02-angular-rxjs.md) | `src/app/shared/`, exemplos isolados |
+| 3 | Gerenciamento de Estado (Signals + NgRx) | [`docs/fase-03-estado.md`](./docs/fase-03-estado.md) | `src/app/store/`, `src/app/features/` |
+| 4 | Aplicação Prática — Listagem de Usuários | [`docs/fase-04-app-pratica.md`](./docs/fase-04-app-pratica.md) | `src/app/features/users/` |
 
-* core/
-* shared/
-* features/
-* state/
-* models/
-* services/
-* material/
-* utils/
+> **Antes de mexer em qualquer pasta-alvo, leia o documento da fase correspondente.**
 
 ---
 
-# Folder Responsibilities
+## 🏛️ Princípios de Engenharia (não-negociáveis)
 
-## core/
+1. **Boas práticas**: Clean Code, SOLID, DRY, KISS, YAGNI.
+2. **Lógica clara**: funções pequenas, puras quando possível, early-return.
+3. **Semântica**: nomes que revelam intenção (PT-BR no domínio, EN em infra).
+4. **Arquitetura em camadas**: `core` (singletons), `shared` (UI reutilizável), `features` (domínios), `store` (estado).
+5. **Sintaxe moderna**: TS estrito, sem `any`, sem `var`, sem `==`.
+6. **Escalabilidade**: standalone components, lazy loading por feature, tree-shakable.
+7. **Metodologia sistemática**: TDD/BDD onde fizer sentido, PRs pequenos, commits convencionais.
+8. **Reatividade correta**: nunca `subscribe` aninhado, sempre gerenciar memory leaks.
+9. **Acessibilidade e i18n**: labels, ARIA, foco visível.
+10. **Testes**: cobertura ≥ 60% (Fase 4), com foco em comportamento.
 
-Global application infrastructure.
+## ✅ Definition of Done (por fase)
 
-Contains:
-
-* interceptors
-* guards
-* app configuration
-* global services
-* auth infrastructure
-
-Rules:
-
-* singleton services only
-* reusable application-wide logic
-
----
-
-## shared/
-
-Reusable UI and utilities.
-
-Contains:
-
-* shared components
-* pipes
-* directives
-* reusable form controls
-* utility helpers
-
-Rules:
-
-* no business logic
-* generic reusable components only
+- [ ] Documento da fase lido e seguido à risca
+- [ ] Código com tipagem completa (zero `any`)
+- [ ] Lint e formatação passando
+- [ ] Testes unitários verdes
+- [ ] Sem `console.log` ou código morto
+- [ ] Subscriptions gerenciadas (sem memory leak)
+- [ ] README/doc atualizado se a estrutura mudou
 
 ---
 
-## features/
+## 🚀 Instalação e Execução
 
-Feature-based architecture.
+> A aplicação prática (Fase 4) ficará na raiz ou em um workspace Nx (a definir em `docs/ARCHITECTURE.md`).
 
-Each feature should contain:
+```bash
+# Instalar dependências
+npm install
 
-* pages
-* components
-* services
-* state
-* models
+# Rodar em desenvolvimento
+npm start          # http://localhost:4200
 
-Example:
-features/users/
+# Rodar testes
+npm test
+npm run test:cov   # com cobertura
 
-Rules:
+# Lint
+npm run lint
 
-* isolate feature responsibility
-* keep feature self-contained
-* avoid cross-feature coupling
+# Build de produção
+npm run build
+```
 
----
+## 📦 Entrega
 
-## state/
-
-Global state management.
-
-Contains:
-
-* ngrx store
-* actions
-* reducers
-* selectors
-* effects
-
-Rules:
-
-* state must remain immutable
-* selectors should be memoized
-* reducers must remain pure
+- Repositório público no GitHub com este README na raiz.
+- Documento do desafio respondido (referenciando os arquivos `docs/fase-XX.md`).
+- Prazo: **4 dias corridos** após o recebimento.
 
 ---
 
-## models/
+## 🧭 Como o Cursor deve raciocinar a cada tarefa
 
-Application typings and interfaces.
-
-Contains:
-
-* DTOs
-* interfaces
-* enums
-* response types
-
-Rules:
-
-* never use any
-* centralize shared types
+1. **Identifique a fase** pela pasta/feature pedida.
+2. **Abra o doc da fase** e verifique requisitos, restrições e exemplos.
+3. **Confira `SKILLS.md`** para o checklist técnico aplicável.
+4. **Implemente em pequenos passos** verificáveis (build/lint/test a cada passo).
+5. **Documente decisões** no doc da fase (seção "Decisões").
+6. **Nunca pule a leitura da documentação** — mesmo para mudanças "pequenas".
 
 ---
 
-## services/
+## ❓ Questionamentos Obrigatórios (antes de codar)
 
-API communication layer.
+> O Cursor **DEVE** responder mentalmente (e registrar no PR/commit quando relevante) cada bloco abaixo **antes** de escrever qualquer linha de código. Se alguma resposta for "não sei", **pare e pergunte ao humano** — não improvise.
 
-Contains:
+### 1. Contexto e Escopo
+- [ ] Qual **fase** (1–4) esta tarefa pertence? Qual `docs/fase-XX.md` rege a mudança?
+- [ ] Qual o **objetivo de negócio** (não técnico) desta alteração?
+- [ ] Esta mudança **já existe** no código? Estou duplicando algo de `shared/` ou `core/`?
+- [ ] O que **NÃO** está no escopo? (evitar scope creep / YAGNI)
 
-* HTTP services
-* data mapping
-* backend integration
+### 2. Arquitetura e Impacto
+- [ ] A pasta-alvo está correta segundo `docs/ARCHITECTURE.md` (`core` / `shared` / `features` / `store`)?
+- [ ] Este código é **smart** (container) ou **dumb** (apresentação)? Está na pasta certa (`feature/` vs `ui/`)?
+- [ ] A mudança quebra contratos públicos (tipos, rotas, selectors, APIs)? Quem consome?
+- [ ] Preciso de **lazy loading**? A feature está isolada o suficiente para escalar?
 
-Rules:
+### 3. Modelagem e Tipos
+- [ ] Os tipos do domínio estão definidos e **imutáveis** (`readonly`, `as const`)?
+- [ ] Existe algum `any` implícito? Posso usar `unknown` + type guard?
+- [ ] Generics fazem sentido aqui (reuso real) ou estou super-engenhando?
+- [ ] Os nomes revelam **intenção** (PT-BR no domínio, EN em infra)?
 
-* components should not call HttpClient directly
-* services return observables
-* keep services stateless when possible
+### 4. Estado e Reatividade
+- [ ] Este estado é **local** (Signals) ou **global** (NgRx)? Justifico em 1 linha.
+- [ ] Há risco de **estado duplicado** entre Signals e NgRx para a mesma fonte?
+- [ ] As streams têm **cleanup** (`takeUntilDestroyed`, `async pipe`, `take(1)`)?
+- [ ] Estou usando o operador RxJS correto? (`switchMap` p/ cancelar, `mergeMap` p/ paralelo, `concatMap` p/ ordem, `exhaustMap` p/ ignorar enquanto ocupado)
+- [ ] Há `subscribe` aninhado escondido? (proibido)
 
----
+### 5. UI, UX e Acessibilidade
+- [ ] Componentes estão `OnPush`? Há `trackBy` em loops?
+- [ ] Há estados de **loading**, **erro** e **vazio** tratados?
+- [ ] Inputs têm **labels**, **aria-***, mensagens de erro por campo?
+- [ ] Foco visível, navegação por teclado, contraste adequado?
+- [ ] Formulários: validações reativas, `Salvar` desabilitado se `invalid`?
 
-# Component Architecture Rules
+### 6. Performance e Escalabilidade
+- [ ] Há `debounceTime` / `distinctUntilChanged` em entradas do usuário?
+- [ ] Listas grandes: virtualização ou paginação server-side?
+- [ ] Selectors NgRx **memoizados**? Computeds Signals puros?
+- [ ] Bundle: imports tree-shakable, sem barrels gigantes?
 
-Each component should:
+### 7. Testes e Qualidade
+- [ ] Quais cenários de teste cobrem este código (happy path, erro, edge cases)?
+- [ ] Testo **comportamento** ou implementação? (preferir comportamento)
+- [ ] HTTP testado com `HttpTestingController`? Streams complexas com marbles?
+- [ ] Cobertura da Fase 4 segue ≥ 60%?
 
-* have a single responsibility
-* minimize local state
-* prefer signals/computed when appropriate
-* avoid large templates
-* avoid large component files
+### 8. Segurança e Robustez
+- [ ] Erros HTTP tratados via `HttpInterceptor` central?
+- [ ] Dados de usuário sanitizados antes de exibir/persistir?
+- [ ] Variáveis de ambiente / segredos **fora** do bundle client?
 
-Container components:
-
-* handle state
-* connect services/store
-* orchestrate flows
-
-Presentational components:
-
-* receive inputs
-* emit outputs
-* remain reusable
-
----
-
-# Angular Signals Guidelines
-
-Use Signals for:
-
-* local UI state
-* computed values
-* lightweight reactive state
-
-Use computed():
-
-* derived values
-* totals
-* filtered data
-
-Use effect():
-
-* side effects only
-
-Avoid:
-
-* unnecessary signal nesting
-* mixing imperative patterns
+### 9. Entrega e Versionamento
+- [ ] O commit segue **Conventional Commits**?
+- [ ] Atualizei a doc da fase (seção "Decisões") se mudei algo não óbvio?
+- [ ] `lint`, `test` e `build` passam localmente?
+- [ ] O PR é pequeno e focado (uma responsabilidade)?
 
 ---
 
-# NgRx Guidelines
-
-Use NgRx for:
-
-* shared/global feature state
-* async flows
-* scalable data management
-
-Structure:
-
-* actions
-* reducer
-* selectors
-* effects
-
-Effects responsibilities:
-
-* async requests
-* API calls
-* side effects
-
-Reducers responsibilities:
-
-* pure state transitions only
-
-Selectors responsibilities:
-
-* derive memoized state
-
----
-
-# Performance Guidelines
-
-## ChangeDetectionStrategy.OnPush
-
-Prefer OnPush whenever possible.
-
-Benefits:
-
-* fewer detection cycles
-* better scalability
-* better rendering performance
-
-When using OnPush:
-
-* avoid mutating objects directly
-* prefer immutable updates
-* use observables/signals correctly
-
----
-
-## trackBy
-
-Always use trackBy on large lists.
-
-Benefits:
-
-* prevents unnecessary DOM recreation
-* improves rendering performance
-* minimizes Angular diff operations
-
----
-
-# Forms Guidelines
-
-Use:
-
-* Reactive Forms
-
-Requirements:
-
-* validation messages
-* reusable validators
-* disabled submit on invalid state
-* typed forms when possible
-
----
-
-# API Layer Guidelines
-
-API services should:
-
-* centralize requests
-* map responses
-* handle errors
-* expose observables only
-
-Avoid:
-
-* API logic inside components
-
----
-
-# Testing Philosophy
-
-Tests should validate:
-
-* component rendering
-* reactive flows
-* form validation
-* state management
-* reducers
-* selectors
-* effects
-
-Prefer:
-
-* isolated unit tests
-* deterministic tests
-* high readability
-
-Coverage target:
-
-* 60%+
-
----
-
-# Cursor AI Development Rules
-
-Before generating code:
-
-1. Analyze folder responsibility
-2. Respect Angular architecture
-3. Maintain reactive patterns
-4. Avoid anti-patterns
-5. Keep components modular
-6. Use strong typing
-7. Avoid memory leaks
-8. Prefer RxJS solutions
-9. Keep scalability in mind
-10. Generate production-oriented code
-
----
-
-# Development Execution Order
-
-## Phase 1
-
-* Angular setup
-* Angular Material
-* Folder structure
-* Routing
-* Core/shared architecture
-
----
-
-## Phase 2
-
-* User list page
-* Mock API/service
-* Loading and error states
-* Search with debounce
-
----
-
-## Phase 3
-
-* Modal form
-* Reactive forms
-* Validations
-* Edit mode
-
----
-
-## Phase 4
-
-* Signals or NgRx state
-* Selectors/computed values
-* State organization
-
----
-
-## Phase 5
-
-* Performance optimizations
-* OnPush
-* trackBy
-* RxJS refinements
-
----
-
-## Phase 6
-
-* Unit tests
-* Coverage improvements
-* Final cleanup
-
----
-
-# Main Objective
-
-This project should demonstrate:
-
-* modern Angular architecture
-* reactive programming skills
-* enterprise-level organization
-* maintainable front-end structure
-* strong TypeScript usage
-* scalable component design
-* professional engineering mindset
+## 🔁 Fluxo Assertivo de Decisão
+
+```text
+Tarefa recebida
+   │
+   ▼
+Bloco 1 (Contexto) ──► escopo claro? ── não ──► PERGUNTAR
+   │ sim
+   ▼
+Bloco 2 (Arquitetura) ──► pasta/camada certa? ── não ──► consultar ARCHITECTURE.md
+   │ sim
+   ▼
+Bloco 3–4 (Tipos + Estado) ──► modelo definido? ── não ──► modelar primeiro
+   │ sim
+   ▼
+Escrever TESTE primeiro (quando aplicável) ──► ver falhar
+   │
+   ▼
+Implementar mínimo viável ──► teste passa? ── não ──► ajustar
+   │ sim
+   ▼
+Bloco 5–6 (UX + Performance) ──► refinar
+   │
+   ▼
+Bloco 7–8 (Qualidade + Segurança) ──► revisar
+   │
+   ▼
+Bloco 9 (Entrega) ──► commit + doc + PR
+```
+
+## 🧪 Heurísticas de Decisão Rápida
+
+| Dúvida | Pergunta-chave | Default |
+|--------|----------------|---------|
+| Signals ou NgRx? | "Outros componentes/efeitos precisam disso?" | Não → Signals · Sim → NgRx |
+| `switchMap` ou `mergeMap`? | "Posso descartar a request anterior?" | Sim → `switchMap` · Não → `mergeMap` |
+| Componente novo ou reuso? | "Existe algo 80% igual em `shared/`?" | Sim → estender · Não → criar em `ui/` |
+| Validador inline ou compartilhado? | "Vai ser usado em ≥ 2 forms?" | Sim → `shared/validators/` · Não → inline |
+| Teste unitário ou integração? | "Estou testando 1 unidade isolada?" | Sim → unitário · Não → integração |
+
+## 🚧 Quando PARAR e Perguntar
+
+- Requisito ambíguo ou contraditório com a doc.
+- Mudança que afeta **múltiplas fases** simultaneamente.
+- Necessidade de adicionar **dependência nova** não listada na stack.
+- Refatoração que altera **contratos públicos** (rotas, tipos exportados, selectors).
+- Qualquer escolha entre **NgRx vs Signals** quando ambos parecem válidos.
+
+> Lembre-se: **este README é o mapa; os arquivos em `docs/` são as rotas; os questionamentos acima são a bússola.** Sem mapa, sem rota e sem bússola, não se anda no projeto.
