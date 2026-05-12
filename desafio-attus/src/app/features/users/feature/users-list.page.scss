@@ -116,6 +116,19 @@
   right: 24px;
   bottom: 24px;
   z-index: 2;
+
+  --mdc-fab-container-color: #c62828;
+  --mdc-fab-icon-color: #fff;
+  --mat-fab-foreground-color: #fff;
+  --mat-mdc-fab-color: #fff;
+
+  &:hover {
+    --mdc-fab-container-color: #b71c1c;
+  }
+
+  &:focus-visible {
+    --mdc-fab-container-color: #b71c1c;
+  }
 }
 
 .sr-only {
